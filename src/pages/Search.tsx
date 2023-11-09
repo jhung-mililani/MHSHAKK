@@ -14,6 +14,8 @@ const SearchPage: React.FC = () => {
   // allow user to set insurance status (QUEST, none, or both)
   const [insurance, setInsurance] = useState<InsuranceProviders | undefined>();
 
+  const [mobileOnResultsView, setMORV] = useState(true);
+
   // if no insurance selected, select first 100 clinics.
   // if there is, plug it into our api.
   // this really needs to be one procedure with the insurance being optional.
@@ -75,30 +77,40 @@ const SearchPage: React.FC = () => {
         <div className="ml-auto mr-auto flex h-fit w-full space-x-4 p-5 pt-0">
           <SelectInsurance setInsurance={setInsurance} />
           <div className="join">
-            <a className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center">
+            <a
+              onClick={() => setMORV(true)}
+              className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+            >
               Results
             </a>
-            <a className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center">
+            <a
+              onClick={() => setMORV(false)}
+              className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+            >
               Map
             </a>
           </div>
         </div>
-        <div
-          className="h-full flex-col overflow-y-scroll
+        {mobileOnResultsView ? (
+          <div
+            className="h-full flex-col overflow-y-scroll
                 border-l-2 border-r-2 bg-white"
-        >
-          {isLoading || !centers ? (
-            <div className="mt-12 grid justify-items-center justify-self-center">
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : (
-                "Centers not found. Try clearing filters?"
-              )}
-            </div>
-          ) : (
-            <ClinicResults centers={centers} />
-          )}
-        </div>
+          >
+            {isLoading || !centers ? (
+              <div className="mt-12 grid justify-items-center justify-self-center">
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  "Centers not found. Try clearing filters?"
+                )}
+              </div>
+            ) : (
+              <ClinicResults centers={centers} />
+            )}
+          </div>
+        ) : (
+          <LeafletMap key={0} />
+        )}
       </div>
     </div>
   );

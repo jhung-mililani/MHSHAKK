@@ -1,6 +1,5 @@
 // import { useState } from "react";
 // import SearchBarAutocomplete from "~/components/SearchBar/AutoComplete";
-import Image from "next/image";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 

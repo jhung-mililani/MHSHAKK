@@ -46,7 +46,7 @@ const SearchPage: React.FC = () => {
           </div>
         </div>
         <div
-          className="0 h-full w-1/2 flex-col overflow-y-scroll
+          className="h-full w-1/2 flex-col overflow-y-scroll
                 border-l-2 border-r-2 bg-white"
         >
           <p className="mb-6 mt-4 rounded-xl text-center text-4xl font-semibold">
@@ -72,20 +72,20 @@ const SearchPage: React.FC = () => {
                 that are in the search results, but I bring up the problem of pagination again. */}
         <LeafletMap key={0} />
       </div>
-      <div className="h-[calc(100%-5rem)] w-screen md:hidden">
+      <div className="h-[calc(100%-5rem)] w-screen block md:hidden">
         <div className="pl-5 pt-3">Pick Insurance</div>
-        <div className="ml-auto mr-auto flex h-fit w-full space-x-4 p-5 pt-0">
+        <div className="ml-auto mr-auto flex w-full space-x-4 p-5 pt-0">
           <SelectInsurance setInsurance={setInsurance} />
           <div className="join">
             <a
               onClick={() => setMORV(true)}
-              className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+              className={(mobileOnResultsView ? "bg-slate-200" : "bg-transparent") + " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"}
             >
               Results
             </a>
             <a
               onClick={() => setMORV(false)}
-              className="join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+              className={(!mobileOnResultsView ? "bg-slate-200" : "bg-transparent") + " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"}
             >
               Map
             </a>
@@ -93,8 +93,7 @@ const SearchPage: React.FC = () => {
         </div>
         {mobileOnResultsView ? (
           <div
-            className="h-full flex-col overflow-y-scroll
-                border-l-2 border-r-2 bg-white"
+            className="h-[calc(100%-6.5rem)] flex-col overflow-y-scroll"
           >
             {isLoading || !centers ? (
               <div className="mt-12 grid justify-items-center justify-self-center">
@@ -149,10 +148,10 @@ function ClinicResults(props: {
     insurancePlans: string[];
   }[];
 }) {
-  return props.centers?.map((c) => (
+  return props.centers.map((c) => (
     <div
       className={
-        "mx-4  mb-4 rounded-xl border-2 border-gray-100 bg-gray-100 p-4"
+        "mx-4 mb-4 rounded-xl border-2 border-gray-100 bg-gray-100 p-4"
       }
       key={c.id}
     >

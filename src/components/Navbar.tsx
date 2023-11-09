@@ -14,18 +14,17 @@ export default function Navbar() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="tyler Hawaii logo"
-            className="h-12 hidden sm:block"
+            className="h-12 hidden md:block"
             src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Tyler_Technologies_logo.svg/640px-Tyler_Technologies_logo.svg.png"
           />
-
           <img
             alt="tyler Hawaii logo compact"
-            className="h-12"
+            className="h-12 block md:hidden"
             src="Shrink_Tyler_Technologies_logo.svg.png"
           />
         </Link>
       </div>
-      <div className="join navbar-center w-21 sm:w-1/2 justify-center">
+      <div className="join w-21 sm:w-1/2 justify-center hidden md:flex navbar-center">
         <div className="w-2/5">
           <SearchBarAutocomplete />
         </div>

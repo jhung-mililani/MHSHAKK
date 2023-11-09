@@ -26,7 +26,7 @@ const SearchPage: React.FC = () => {
   return (
     <div className="h-screen overflow-hidden font-tyler">
       <Navbar />
-      <div className="flex h-[calc(100%-5rem)] w-screen">
+      <div className="hidden md:flex h-[calc(100%-5rem)] w-screen">
         <div
           className="0 
                 h-full w-1/5 flex-col bg-gray-100"
@@ -105,6 +105,23 @@ const SearchPage: React.FC = () => {
         {/* possibly feed the list of locations into here, it was requested/needed that the leaflet map should only show endpoints
                 that are in the search results, but I bring up the problem of pagination again. */}
         <LeafletMap key={0} />
+      </div>
+      <div className="md:hidden h-[calc(100%-5rem)] w-screen">
+        <div className="pl-5 pt-3">Pick Insurance</div>
+        <div className="ml-auto mr-auto w-full p-5 pt-0 flex space-x-4 h-fit">
+          <select className="select select-bordered text-base w-full" defaultValue={"Pick one"}>
+            <option disabled>
+              Pick one
+            </option>
+            <option onClick={(_p) => setInsurance("FQHC")}>Uninsured</option>
+            <option onClick={(_p) => setInsurance("QI")}>Med-QUEST</option>
+            <option onClick={(_p) => setInsurance(undefined)}>Any</option>
+          </select>
+          <div className="join">
+            <a className="border join-item text-center">Results</a>
+            <a className="border join-item text-center">Map</a>
+          </div>
+        </div>
       </div>
     </div>
   );

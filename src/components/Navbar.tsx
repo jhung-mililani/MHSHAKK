@@ -7,8 +7,6 @@ export default function Navbar() {
 
   const { data } = api.healthcare.getAllProcedureTypes.useQuery();
 
-  if(data) console.log(data)
-
   return (
     <div className="navbar sticky top-0 flex h-20 flex-row border-b-2 bg-white">
       <div className="navbar-start">

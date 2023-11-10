@@ -1,13 +1,19 @@
 // import { useState } from "react";
 // import SearchBarAutocomplete from "~/components/SearchBar/AutoComplete";
-import Image  from "next/image";
+import Image from "next/image";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import islandImage from "~/assets/img/index-image-island.jpg"
+import Head from "next/head";
 
 export default function searchPage() {
     return (
         <>
+            <Head>
+                <title>HelpCare</title>
+                <meta name="description" content="created by the MHS HAKK team" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Navbar />
             <div>
                 {/* <SearchBarAutocomplete /> */}
@@ -37,7 +43,7 @@ export default function searchPage() {
                         </div>
                     </div>
                     <div className="w-1/2">
-                        <Image className="h-full w-3/4 object-cover" loading="eager" width={1280} height={720} alt="Image of Hawaii" src={islandImage}/>
+                        <Image className="h-full w-3/4 object-cover" loading="eager" width={1280} height={720} alt="Image of Hawaii" src={islandImage} />
                     </div>
                 </div>
             </div>

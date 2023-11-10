@@ -22,7 +22,7 @@ export default function Navbar() {
           />
         </Link>
       </div>
-      <div className="join navbar-end flex w-full justify-center sm:navbar-center sm:w-1/2 mr-6 sm:mr-0">
+      <div className="join navbar-end flex w-full justify-center sm:navbar-center mr-6 sm:mr-0">
         <div className="w-full min-w-fit sm:w-2/5">
           <SearchBarAutocomplete />
         </div>

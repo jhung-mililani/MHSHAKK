@@ -3,8 +3,7 @@ import { api } from "~/utils/api";
 import SearchBarAutocomplete from "~/components/SearchBar/Autocomplete";
 
 export default function Navbar() {
-
-  const { data } = api.healthcare.getAllProcedureTypes.useQuery();
+  // const { data } = api.healthcare.getAllProcedureTypes.useQuery();
 
   return (
     <div className="navbar sticky top-0 flex h-20 flex-row border-b-2 bg-white">
@@ -23,8 +22,8 @@ export default function Navbar() {
           />
         </Link>
       </div>
-      <div className="join navbar-end sm:navbar-center justify-center flex w-full sm:w-1/2">
-        <div className="min-w-fit w-full sm:w-2/5">
+      <div className="join navbar-end flex w-full justify-center sm:navbar-center sm:w-1/2 mr-6 sm:mr-0">
+        <div className="w-full min-w-fit sm:w-2/5">
           <SearchBarAutocomplete />
         </div>
         <div className="indicator">
@@ -46,7 +45,7 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-      <div className="hidden sm:flex navbar-end">
+      <div className="navbar-end hidden sm:flex">
         {/* <a target="_blank"href="https://www.tylertech.com/client-support" className="btn btn-ghost h-14 text-lg mr-60">
           Contact us
         </a> */}

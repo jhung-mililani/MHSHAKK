@@ -28,15 +28,15 @@ const HealthcareRouter = createTRPCRouter({
   getByPlan: publicProcedure
     .input(z.object({ insurance: InsuranceValidator, procedure: ProcedureValidator }))
     .query(async ({ input }) => {
-      var supportedInsurances = {
+      let supportedInsurances = {
         isEmpty: false
       }
       if(input.insurance) supportedInsurances = {has: input.insurance};
-      var procedureTypeNames = {
+      let procedureTypeNames = {
         isEmpty: false
       }
       if(input.procedure) procedureTypeNames = {has: input.procedure};
-      const a = (input.insurance || input.procedure) ? await db.healthCenter.findMany({
+      const a = (input.insurance ?? input.procedure) ? await db.healthCenter.findMany({
         where: {
           supportedInsurances,
           AND: {

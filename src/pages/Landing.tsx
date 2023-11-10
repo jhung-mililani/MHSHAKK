@@ -4,20 +4,18 @@ import Image  from "next/image";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import islandImage from "~/assets/img/index-image-island.jpg"
+import Link from "next/link";
 
 export default function searchPage() {
     return (
         <>
             <Navbar />
-            <div>
-                {/* <SearchBarAutocomplete /> */}
-            </div>
             <div className="font-tyler">
                 <div className="h-100 sm-60 w-full bg-dark-blue font-tyler text-center md:text-left">
                     <div className="md:ml-60 pt-14 w-full md:w-2/3">
                         <h1 className="text-white text-6xl font-bold">Tyler Healthcare Hawaii</h1>
                         <p className="text-white text-3xl mt-6 font-semi-bold">Healthcare clinic finder for the uninsured and underinsured</p>
-                        <a href="Search" className=" mb-11 normal-case mt-6 btn w-40 h-14 text-xl bg-light-green hover:bg-hover-green text-green-gray border-0">Start Now</a>
+                        <Link href="/Search" className=" mb-11 normal-case mt-6 btn w-40 h-14 text-xl bg-light-green hover:bg-hover-green text-green-gray border-0">Start Now</Link>
                     </div>
                 </div>
                 <div className="flex flex-co mb-10 pt-14">
@@ -37,7 +35,7 @@ export default function searchPage() {
                         </div>
                     </div>
                     <div className="w-1/2 hidden md:block">
-                        <Image className="md:h-full w-3/4 object-cover h-1 w-1" loading="eager" width={1280} height={720} alt="Image of Hawaii" src={islandImage}/>
+                        <Image className="md:h-full w-3/4 object-cover h-1" loading="eager" width={1280} height={720} alt="Image of Hawaii" src={islandImage}/>
                     </div>
                 </div>
             </div>

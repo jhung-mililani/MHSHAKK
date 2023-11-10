@@ -26,7 +26,7 @@ const SearchPage: React.FC = () => {
       : api.healthcare.getSome.useQuery();
 
   return (
-    <div className="h-screen overflow-hidden font-tyler">
+    <div className="fixed h-full overflow-x-hidden font-tyler">
       <Navbar />
       <div className="hidden h-[calc(100%-5rem)] w-screen md:flex">
         <div
@@ -61,7 +61,7 @@ const SearchPage: React.FC = () => {
               {isLoading ? (
                 <LoadingSpinner />
               ) : (
-                "Centers not found. Try clearing filters?"
+                "Could not find any centers. Try clearing filters?"
               )}
             </div>
           ) : (
@@ -72,44 +72,56 @@ const SearchPage: React.FC = () => {
                 that are in the search results, but I bring up the problem of pagination again. */}
         <LeafletMap key={0} />
       </div>
-      <div className="h-[calc(100%-5rem)] w-screen block md:hidden">
-        <div className="pl-5 pt-3">Pick Insurance</div>
-        <div className="ml-auto mr-auto flex w-full space-x-4 p-5 pt-0">
+      <div className="flex h-[calc(100vh-5rem)] w-screen flex-col md:hidden">
+        <div className="flex max-h-fit pl-5 pt-3">Pick Insurance</div>
+        <div className="ml-auto mr-auto flex max-h-fit w-full space-x-4 p-5 pt-0">
           <SelectInsurance setInsurance={setInsurance} />
           <div className="join">
             <a
               onClick={() => setMORV(true)}
-              className={(mobileOnResultsView ? "bg-slate-200" : "bg-transparent") + " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"}
+              className={
+                (mobileOnResultsView
+                  ? "bg-slate-200"
+                  : "flex-grow bg-transparent") +
+                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+              }
             >
               Results
             </a>
             <a
               onClick={() => setMORV(false)}
-              className={(!mobileOnResultsView ? "bg-slate-200" : "bg-transparent") + " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"}
+              className={
+                (!mobileOnResultsView ? "bg-slate-200" : "bg-transparent") +
+                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+              }
             >
               Map
             </a>
           </div>
         </div>
-        {mobileOnResultsView ? (
-          <div
-            className="h-[calc(100%-6.5rem)] flex-col overflow-y-scroll"
-          >
-            {isLoading || !centers ? (
+        <div
+          className={
+            mobileOnResultsView
+              ? "flex-1 pb-4"
+              : "h-full flex-1 overflow-y-hidden"
+          }
+        >
+          {mobileOnResultsView ? (
+            isLoading || !centers ? (
               <div className="mt-12 grid justify-items-center justify-self-center">
                 {isLoading ? (
                   <LoadingSpinner />
                 ) : (
-                  "Centers not found. Try clearing filters?"
+                  "Could not find any centers. Try clearing filters?"
                 )}
               </div>
             ) : (
               <ClinicResults centers={centers} />
-            )}
-          </div>
-        ) : (
-          <LeafletMap key={0} />
-        )}
+            )
+          ) : (
+            <LeafletMap key={0} />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -145,7 +157,10 @@ function ClinicResults(props: {
     names: string[];
     website: string | null;
     healthCenterNumbers: string[];
-    insurancePlans: string[];
+    supportedInsurances: string[];
+    procedureTypeNames: string[];
+    procedureTypeIDs: string[];
+    doctorIDs: string[];
   }[];
 }) {
   return props.centers.map((c) => (
@@ -159,7 +174,7 @@ function ClinicResults(props: {
         <a
           href={"/location/" + c.id}
           className={
-            c.insurancePlans.includes("QI")
+            c.supportedInsurances.includes("QI")
               ? "text-dark-blue"
               : "text-dark-blue"
           }
@@ -170,7 +185,6 @@ function ClinicResults(props: {
 
       <div className="flex">
         <div className="min-w-full break-words text-justify">
-          {/* {isLoggedIn ? 'currently' : 'not'} */}
           {c.website && (
             <a
               className="italic text-blue-700 underline"
@@ -196,8 +210,8 @@ function ClinicResults(props: {
             </div>
           )}
           <div>
-            {c.insurancePlans.includes("QI") && "Quest Insured"}
-            {c.insurancePlans.includes("FQHC") &&
+            {c.supportedInsurances.includes("QI") && "Quest Insured"}
+            {c.supportedInsurances.includes("FQHC") &&
               "Federally Qualified Health Center"}
           </div>
         </div>

@@ -26,8 +26,9 @@ const SearchPage: React.FC = () => {
       : api.healthcare.getSome.useQuery();
 
   return (
-    <div className="fixed h-full overflow-x-hidden font-tyler">
+    <div className={"fixed h-full overflow-x-hidden font-tyler " + (!mobileOnResultsView && "overflow-y-hidden sm:overflow-y-auto")}>
       <Navbar />
+      {/* Desktop view */}
       <div className="hidden h-[calc(100%-5rem)] w-screen md:flex">
         <div
           className="0 
@@ -72,6 +73,8 @@ const SearchPage: React.FC = () => {
                 that are in the search results, but I bring up the problem of pagination again. */}
         <LeafletMap key={0} />
       </div>
+
+      {/* Mobile view */}
       <div className="flex h-[calc(100vh-5rem)] w-screen flex-col md:hidden">
         <div className="flex max-h-fit pl-5 pt-3">Pick Insurance</div>
         <div className="ml-auto mr-auto flex max-h-fit w-full space-x-4 p-5 pt-0">

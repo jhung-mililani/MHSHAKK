@@ -20,7 +20,7 @@ export default function Navbar() {
           <img
             alt="tyler Hawaii logo compact"
             className="h-12 block md:hidden"
-            src="Shrink_Tyler_Technologies_logo.svg.png"
+            src="/Shrink_Tyler_Technologies_logo.svg.png"
           />
         </Link>
       </div>

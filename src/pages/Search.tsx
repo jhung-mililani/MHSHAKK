@@ -14,6 +14,7 @@ const SearchPage: React.FC = () => {
   // this is used for filtering.
   // allow user to set insurance status (QUEST, none, or both)
   const [insurance, setInsurance] = useState<InsuranceProviders | undefined>();
+  const [procedure, setProcedure] = useState<string | undefined>();
 
   const [mobileOnResultsView, setMORV] = useState(true);
 
@@ -29,7 +30,7 @@ const SearchPage: React.FC = () => {
   return (
     <div
       className={
-        "h-full overflow-x-hidden font-tyler md:overflow-y-auto md:block " +
+        "h-screen overflow-x-hidden font-tyler md:block md:overflow-y-auto " +
         (!mobileOnResultsView && "fixed overflow-y-hidden")
       }
     >
@@ -50,7 +51,14 @@ const SearchPage: React.FC = () => {
               </span>
             </label>
             <SelectInsurance setInsurance={setInsurance} />
+            <label className="label">
+              <span className="label-text text-base font-semibold">
+                Procedure type
+              </span>
+            </label>
+            <SelectProcedure setProcedure={setProcedure} />
           </div>
+
         </div>
         <div
           className="h-full w-1/2 flex-col overflow-y-scroll
@@ -82,9 +90,41 @@ const SearchPage: React.FC = () => {
 
       {/* Mobile view */}
       <div className="flex h-[calc(100vh-5rem)] w-screen flex-col md:hidden">
-        <div className="flex max-h-fit pl-5 pt-3">Pick Insurance</div>
+        <dialog id="optionsDialogue" className="modal">
+          <div className="modal-box space-y-4">
+            <form method="dialog">
+              <button className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">
+                ✕
+              </button>
+            </form>
+            <div>
+              <h3 className="text-lg font-bold">Select Insurance Provider</h3>
+              <SelectInsurance setInsurance={setInsurance} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold">Select Procedure Type</h3>
+              <SelectProcedure setProcedure={setProcedure} />
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button/>
+          </form>
+        </dialog>
+        <div className="flex max-h-fit pb-1 pl-5 pt-3">
+          Pick Insurance / Procedures
+        </div>
         <div className="mx-auto flex max-h-fit w-full space-x-4 p-5 pt-0">
-          <SelectInsurance setInsurance={setInsurance} />
+          {/* You can open the modal using document.getElementById('ID').showModal() method */}
+          <button
+            className="select-bordered w-full rounded-lg border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
+            onClick={() =>
+              (
+                document.getElementById("optionsDialogue") as HTMLDialogElement
+              ).showModal()
+            }
+          >
+            Click for options
+          </button>
           <div className="join">
             <a
               onClick={() => setMORV(true)}
@@ -92,7 +132,7 @@ const SearchPage: React.FC = () => {
                 (mobileOnResultsView
                   ? "bg-slate-200"
                   : "flex-grow bg-transparent") +
-                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
               }
             >
               Results
@@ -101,7 +141,7 @@ const SearchPage: React.FC = () => {
               onClick={() => setMORV(false)}
               className={
                 (!mobileOnResultsView ? "bg-slate-200" : "bg-transparent") +
-                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] px-2 text-center"
+                " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
               }
             >
               Map
@@ -154,6 +194,22 @@ function SelectInsurance(props: {
       <option disabled>Pick one</option>
       <option value={"FQHC"}>Uninsured</option>
       <option value={"QI"}>Med-QUEST</option>
+      <option value={undefined}>Any</option>
+    </select>
+  );
+}
+
+function SelectProcedure(props: {
+  setProcedure: (value: React.SetStateAction<string | undefined>) => void;
+}) {
+  return (
+    <select
+      className="select select-bordered w-full text-base"
+      defaultValue={"Pick one"}
+      onChange={(sel) => props.setProcedure(sel.target.value)}
+    >
+      <option disabled>Pick one</option>
+      <option value={"Comprehensive Care"}>Comprehensive Care</option>
       <option value={undefined}>Any</option>
     </select>
   );

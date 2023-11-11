@@ -97,10 +97,10 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
   };
 
   return (
-    <div className="h-screen overflow-hidden " >
+    <div className="h-fit overflow-hidden " >
       <div className="ml-auto mr-auto w-fit p-7 sm:p-3 sm:py-24">
         <h3 className="pb-3 text-center text-5xl sm:text-6xl font-bold text-green-gray">
-          Was Your Care Covered?
+          Were you able to get care?
         </h3>
         <div className="pb-2 text-xl text-center">
           {"Reviewing " + foundHealthCenter.address + ". "}<br/>
@@ -110,6 +110,7 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
           Wrong address?
         </Link>
         </div>
+        <p className="text-center mt-5 text-3xl">{status}</p>
         <form onSubmit={handleSubmit} className="justify-items-center text-center" ref={formRef}>
           <table className="text-left mb-5 w-full">
             <tbody>
@@ -204,7 +205,6 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
           </table>
           <input className="btn bg-light-green hover:bg-hover-green text-green-gray text-lg border-0" type="submit" value="submit!" />
         </form>
-        <p className="text-center mt-5 text-3xl">{status}</p>
       
 
         {/* idk what this was for but i removed it bc it just said "comprehensive care" */}

@@ -5,6 +5,7 @@ import type { InsuranceProviders } from "~/server/api/routers/HealthcareRouter";
 import { api } from "~/utils/api";
 import Navbar from "~/components/Navbar";
 import { LoadingSpinner } from "~/components/Loading";
+import Link from "next/link";
 const LeafletMap = dynamic(() => import("../components/LeafletMap"), {
   ssr: false,
 });
@@ -26,7 +27,12 @@ const SearchPage: React.FC = () => {
       : api.healthcare.getSome.useQuery();
 
   return (
-    <div className={"fixed h-full overflow-x-hidden font-tyler " + (!mobileOnResultsView && "overflow-y-hidden sm:overflow-y-auto")}>
+    <div
+      className={
+        "h-full overflow-x-hidden font-tyler md:overflow-y-auto md:block " +
+        (!mobileOnResultsView && "fixed overflow-y-hidden")
+      }
+    >
       <Navbar />
       {/* Desktop view */}
       <div className="hidden h-[calc(100%-5rem)] w-screen md:flex">
@@ -77,7 +83,7 @@ const SearchPage: React.FC = () => {
       {/* Mobile view */}
       <div className="flex h-[calc(100vh-5rem)] w-screen flex-col md:hidden">
         <div className="flex max-h-fit pl-5 pt-3">Pick Insurance</div>
-        <div className="ml-auto mr-auto flex max-h-fit w-full space-x-4 p-5 pt-0">
+        <div className="mx-auto flex max-h-fit w-full space-x-4 p-5 pt-0">
           <SelectInsurance setInsurance={setInsurance} />
           <div className="join">
             <a
@@ -174,7 +180,7 @@ function ClinicResults(props: {
       key={c.id}
     >
       <div className="l-20 text-2xl font-semibold">
-        <a
+        <Link
           href={"/location/" + c.id}
           className={
             c.supportedInsurances.includes("QI")
@@ -183,7 +189,7 @@ function ClinicResults(props: {
           }
         >
           {c.names[0] + " (" + (false || "Comprehensive Care") + ")"}
-        </a>
+        </Link>
       </div>
 
       <div className="flex">

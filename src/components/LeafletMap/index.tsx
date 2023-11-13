@@ -36,14 +36,14 @@ const LeafletMap: React.FC = () => {
             const c = jsonData[index];
             if (!c) return null;
 
-            const { address, id, names, healthCenterNumbers, supportedInsurances } = x;
+            const { address, id, names, website, healthCenterNumbers, supportedInsurances } = x;
             return {
                 type: "Feature",
                 geometry: {
                     type: "Point",
                     coordinates: [c.Longitude, c.Latitude],
                 },
-                properties: { id, address, names, website: x.website, healthCenterNumbers, supportedInsurances },
+                properties: { id, address, names, website, healthCenterNumbers, supportedInsurances },
             };
         }).filter(Boolean) as ModdedGSONObj[];
 
@@ -64,15 +64,15 @@ const LeafletMap: React.FC = () => {
                                 return number.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
                             }); 
                             const insuranceStuff = supportedInsurances.length > 0 ? `<p><strong>Insurance Plan(s): </strong>${supportedInsurances.join(', ')}</p>` : ''
-                            const websiteLink = website ? `<p><strong>Website:</strong> <a href="${website}" target="_blank">${website}</a></p>` : '';
+                            const websiteLink = website ? `<p><strong>Website:</strong> <a href="https://${website}" target="_blank">${website}</a></p>` : '';
                             const popupContent = `
                             <div>
                                 <h2><strong>${names.join(', ')}</strong></h2>
                                 <a href=/location/${id}> (Click for more details)</a>
+                                ${websiteLink}
                                 <p><strong>Address:</strong> ${address}</p>
                                 <p><strong>Health Center Numbers:</strong> ${formattedHealthCenterNumbers.join(', ')}</p>
                                 ${insuranceStuff}
-                                ${websiteLink}
                             </div>
                             `;
 

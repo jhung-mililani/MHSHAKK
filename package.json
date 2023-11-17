@@ -24,7 +24,7 @@
     "fs": "^0.0.1-security",
     "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
-    "mongodb": "^6.2.0",
+    "mongodb": "^6.3.0",
     "next": "^14.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

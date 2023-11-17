@@ -146,7 +146,8 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
             {/**
              * Was Your Care Covered? TOOLTIP
              */}
-            <a href="#review">
+            <a href="#review"
+              onClick={() => setMORV("review")}>
               <div
                 className={
                   "w-full lg:block " + (mobileView === "map" ? "hidden" : "")
@@ -212,17 +213,19 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                     >
                       Directions
                     </a>
-                    <a
-                      onClick={() => setMORV("review")}
-                      className={
-                        (mobileView === "review"
-                          ? "bg-global-dim"
-                          : "bg-transparent") +
-                        " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
-                      }
-                    >
-                      Review
-                    </a>
+                    <div id="review">
+                      <a
+                        onClick={() => setMORV("review")}
+                        className={
+                          (mobileView === "review"
+                            ? "bg-global-dim"
+                            : "bg-transparent") +
+                          " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
+                        }
+                      >
+                        Review
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

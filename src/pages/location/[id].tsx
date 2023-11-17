@@ -156,7 +156,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                   <div className="toast toast-end opacity-90">
                     <div
                       className={
-                        (mobileView === "review" ? "hidden md:flex" : "flex") +
+                        (mobileView === "review" ? "hidden lg:flex" : "flex") +
                         " alert alert-info tooltip tooltip-top bg-dark-blue text-white"
                       }
                       data-tip="Let us know if your care was covered"

@@ -183,7 +183,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
             {/**
              * SELECT VIEW FOR MOBILE
              */}
-            <div className={"mb-5 flex h-full w-screen flex-col lg:hidden " + (mobileView === "map" ? "border-global-dim border-t-2" : '')}>
+            <div className={"mb-5 flex h-full w-screen flex-col lg:hidden " + (mobileView === "map" ? "border-base-200 border-t-2" : '')}>
               <div className="mx-auto h-full">
                 <div className="pb-2 pt-5 text-center text-3xl font-semibold dark:text-white">
                   Select View
@@ -194,7 +194,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                       onClick={() => setMORV("desc")}
                       className={
                         (mobileView === "desc"
-                          ? "bg-global-dim"
+                          ? "bg-base-200"
                           : "bg-transparent") +
                         " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
                       }
@@ -205,7 +205,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                       onClick={() => setMORV("map")}
                       className={
                         (mobileView === "map"
-                          ? "bg-global-dim"
+                          ? "bg-base-200"
                           : "bg-transparent") +
                         " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
                       }
@@ -216,7 +216,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                       onClick={() => setMORV("review")}
                       className={
                         (mobileView === "review"
-                          ? "bg-global-dim"
+                          ? "bg-base-200"
                           : "bg-transparent") +
                         " join-item select-bordered flex flex-col content-center justify-center border border-[hsl(var(--bc)/var(--tw-border-opacity))] p-2 px-2 text-center"
                       }
@@ -238,7 +238,7 @@ const LocationDestination: NextPage<{ id: string }> = ({ id }) => {
                 (mobileView === "desc" ? "mb-3 flex" : "hidden")
               }
             >
-              <div className="static mx-3 lg:mx-4 w-full rounded-xl bg-global-dim lg:mr-0 lg:min-w-[55%] lg:max-w-[55%] lg:rounded-r-none lg:border-r-4">
+              <div className="static mx-3 lg:mx-4 w-full rounded-xl bg-base-200 lg:mr-0 lg:min-w-[55%] lg:max-w-[55%] lg:rounded-r-none lg:border-r-4">
                 <div className="min-h-96 px-4 py-7 sm:p-7">
                   <div className="text-center text-3xl font-semibold lg:text-start dark:text-white">
                     Clinic Description

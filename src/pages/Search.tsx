@@ -76,7 +76,7 @@ const SearchPage: React.FC = () => {
       {/* Desktop view */}
       <div className="hidden h-[calc(100%-5rem)] w-screen md:flex">
         <div
-          className="h-full w-13/5 flex-col bg-slate-100 dark:bg-global-dim"
+          className="h-full w-13/5 flex-col bg-slate-100 dark:bg-base-200"
         >
           <p className="mb-2 mt-4 text-center text-xl font-semibold">
             Search Filters:
@@ -99,7 +99,7 @@ const SearchPage: React.FC = () => {
         </div>
         <div
           className="h-full w-1/2 flex-col overflow-y-scroll
-                border-l-2 border-r-2 bg-global border-global"
+                border-l-2 border-r-2 bg-base-100 border-base-100"
         >
           <p className="mb-6 mt-4 rounded-xl text-center text-4xl font-semibold">
             Search Results:
@@ -254,7 +254,7 @@ function ClinicResults(props: {
   return props.centers.map((c) => (
     <div
       className={
-        "mx-4 mb-4 rounded-xl border-2 bg-global-dim dark:border-slate-800 p-4"
+        "mx-4 mb-4 rounded-xl border-2 bg-base-200 dark:border-slate-800 p-4"
       }
       key={c.id}
     >

@@ -228,7 +228,7 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
                   <div className="join w-full text-lg">
                     <div className="join join-item join-horizontal border border-gray-300 w-6/12 justify-evenly">
                       <input
-                        className={"input join-item w-full " + (covered === true ? activeYesBtnCSS : 'hover:bg-global-dim')}
+                        className={"input join-item w-full " + (covered === true ? activeYesBtnCSS : 'hover:bg-base-200')}
                         type="button"
                         name="covered"
                         id="coveredy"
@@ -239,7 +239,7 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
 
                     <div className="join join-item join-horizontal border border-gray-300 w-6/12 justify-evenly">
                       <input
-                        className={"input join-item w-full " + (covered === false ? activeNoBtnCSS : 'hover:bg-global-dim')}
+                        className={"input join-item w-full " + (covered === false ? activeNoBtnCSS : 'hover:bg-base-200')}
                         type="button"
                         name="covered"
                         id="coveredn"

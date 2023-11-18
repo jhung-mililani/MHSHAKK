@@ -155,9 +155,9 @@ export const ReviewPage: NextPage<{ healthCenterID: string }> = ({
                 </td>
                 <td>
                   {/* <input type="text" id="procedureType" name="procedureType" className="input input-bordered w-full" /> */}
-                  <select onChange={handleCenterChange} name="procedureType" className="border w-full h-12 text-center rounded-lg border-gray-300 ">
+                  <select onChange={handleCenterChange} name="procedureType" className="border w-full h-12 text-center rounded-lg border-gray-300 " defaultValue={"Select a procedure type"}>
                   {/* <select onChange={(e: { target: { value}; }) => {handleCenterChange(e.target.value)}} name="procedureType" className="border border-gray-300 w-full h-12 bg-white text-center rounded-lg"> */}
-                    <option value="" className="text-center" disabled >Select a procedure type</option>
+                    <option className="text-center" disabled >Select a procedure type</option>
                     {/* Mapping through each fruit object in our fruits array
                       and returning an option element with the appropriate attributes / values.
                     */}
